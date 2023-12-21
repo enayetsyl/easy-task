@@ -7,6 +7,7 @@ import DashboardLayout from "../Layout/DashboardLayout";
 import AddTask from "../DPages/AddTask";
 import Login from "../pages/Login";
 import EditTask from "../DPages/EditTask";
+import AllTask from "../DPages/AllTask";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
     path:"dashboard",
     element:<DashboardLayout/>,
     children:[
+      {
+        index:true,
+        element:<AllTask/>
+      },
       {
         path:'add-task',
         element:<AddTask/>
