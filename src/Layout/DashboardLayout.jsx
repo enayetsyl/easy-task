@@ -1,13 +1,13 @@
 import { Outlet } from "react-router-dom";
-import Drawer from "../Components/Drawer";
 import Footer from "../Components/Footer";
+import Navbar from "../Components/Navbar";
 
 const DashboardLayout = () => {
   return (
-    <div>
-      <div className="flex justify-center items-center">
-        <div className="w-72"><Drawer/></div>
-        <div className="flex-auto"><Outlet/></div>
+    <div className="flex flex-col min-h-screen">
+      <Navbar/>
+      <div className="flex-auto">
+      <Outlet/>
       </div>
       <div><Footer/></div>
     </div>

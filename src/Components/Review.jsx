@@ -3,7 +3,7 @@ import SwiperComponent from "./Swiper";
 
 const Review = () => {
   return (
-    <div className="space-y-5">
+    <div className="space-y-5 my-14">
       <Typography variant="h3"
       textAlign='center'
       >

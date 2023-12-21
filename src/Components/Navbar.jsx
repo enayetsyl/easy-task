@@ -85,16 +85,34 @@ console.log('navbar user', user)
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: 'block', md: 'none' },
+                display: { xs: 'flex', md: 'none' },
+                flexDirection: {
+                  xs:'column', md:''
+                }
               }}
             >
               <MenuItem
               onClick={handleCloseNavMenu}
-              ><Typography textAlign='center'
+              >
+                <Link to='/'>
+                <Typography textAlign='center'
               sx={{
                 textTransform: 'capitalize'
               }}
-              >Dashboard</Typography></MenuItem>
+              >Home</Typography>
+                </Link>
+              </MenuItem>
+              <MenuItem
+              onClick={handleCloseNavMenu}
+              >
+               <Link to='/dashboard'>
+               <Typography textAlign='center'
+              sx={{
+                textTransform: 'capitalize'
+              }}
+              >Dashboard</Typography>
+               </Link>
+              </MenuItem>
            
             </Menu>
           </Box>
@@ -118,13 +136,24 @@ console.log('navbar user', user)
           >
             Easy-Task
           </Typography>
+          
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Link to={'/'}>
+          <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                  Home
+              </Button>
+          </Link>
+          <Link to={'/dashboard'}>
           <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                   Dashboard
               </Button>
+          </Link>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>

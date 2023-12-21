@@ -6,6 +6,7 @@ import WorkIcon from '@mui/icons-material/Work';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import { Link } from 'react-router-dom';
+import { Box, Typography } from '@mui/material';
 
 const Footer = () => {
   const [value, setValue] = React.useState('portfolio');
@@ -18,15 +19,17 @@ const Footer = () => {
     <BottomNavigation 
     sx={{
       borderTop:'2px solid #444',
-      borderBottom:'2px solid #444',
       display:'flex',
-      justifyContent: 'space-around',
-      marginTop: '50px'
+      flexDirection:'column',
     }}
-    
     value={value} onChange={handleChange}>
 
-          <BottomNavigationAction
+        <Box sx={{
+      display:'flex',
+      justifyContent: 'space-around',
+      paddingTop: '10px'
+     }}>
+        <BottomNavigationAction
         label="Portfolio"
         value="portfolio"
         icon={<Link to={'https://enayet-portfolio.netlify.app/'}><WorkIcon /></Link>}
@@ -47,7 +50,15 @@ const Footer = () => {
      
      <BottomNavigationAction label="Twitter" value="twitter" icon={<Link to={'https://twitter.com/enayetu_syl'}><TwitterIcon /></Link>}
       />
-   
+
+        </Box>
+   <Typography 
+   textAlign='center'
+   variant='body2'
+   pb={2}
+   >
+     copyright@ Md Enayetur Rahman 01730197620
+   </Typography>
     </BottomNavigation>
   );
 };
