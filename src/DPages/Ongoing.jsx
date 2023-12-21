@@ -7,7 +7,7 @@ import { Typography } from "@mui/material";
 
 const Ongoing = () => {
   
-  const {data:tasks, isLoading} = useQuery({
+  const {data:tasks, isLoading, refetch} = useQuery({
     queryKey:['ongoingTask'],
     queryFn: async () => {
       const result = await axios.get(`http://localhost:5000/all-tasks?status=ongoing`)
@@ -18,7 +18,7 @@ const Ongoing = () => {
   if(isLoading){
     return <p>Loading........</p>
   }
-    console.log(tasks)
+  console.log(tasks)
   
   return (
     <div className="border border-[#1976D2] px-2 py-4 rounded-lg space-y-2">
@@ -27,7 +27,7 @@ const Ongoing = () => {
       pb={2}
       >Ongoing Task</Typography>
       {
-        tasks.map(task => <TaskCard key={task._id} task={task}/>)
+        tasks.map(task => <TaskCard key={task._id} task={task} refetchData={refetch}/>)
       }
     </div>
   );

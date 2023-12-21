@@ -16,19 +16,17 @@ const Footer = () => {
   };
 
   return (
-    <BottomNavigation 
-    sx={{
-      borderTop:'2px solid #444',
-      display:'flex',
-      flexDirection:'column',
-    }}
+ <Box  sx={{
+  borderTop:'2px solid #444',
+  display:'flex',
+  flexDirection:'column',
+  backgroundColor:'#1976D2'
+}}>
+     <BottomNavigation 
+   
     value={value} onChange={handleChange}>
 
-        <Box sx={{
-      display:'flex',
-      justifyContent: 'space-around',
-      paddingTop: '10px'
-     }}>
+    
         <BottomNavigationAction
         label="Portfolio"
         value="portfolio"
@@ -51,15 +49,15 @@ const Footer = () => {
      <BottomNavigationAction label="Twitter" value="twitter" icon={<Link to={'https://twitter.com/enayetu_syl'}><TwitterIcon /></Link>}
       />
 
-        </Box>
+     </BottomNavigation>
    <Typography 
    textAlign='center'
    variant='body2'
-   pb={2}
+
    >
      copyright@ Md Enayetur Rahman 01730197620
    </Typography>
-    </BottomNavigation>
+ </Box>
   );
 };
 
