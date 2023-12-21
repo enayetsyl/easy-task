@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import {GoogleAuthProvider, getAuth, onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth'
+import {GoogleAuthProvider, getAuth, onAuthStateChanged, signInWithPopup, signOut,  } from 'firebase/auth'
 import app from '../Firebase/firebase.config'
 
 
@@ -17,7 +17,7 @@ console.log(user)
     return signInWithPopup(auth, googleProvider)
   }
 
-  const signOut = () => {
+  const logOut = () => {
     setLoading(true)
     return signOut(auth)
   }
@@ -38,7 +38,7 @@ console.log(user)
     loading,
     googleSignIn, 
     setUser,
-    signOut
+    logOut
   }
 
   return (

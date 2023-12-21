@@ -6,6 +6,7 @@ import Home from "../pages/Home";
 import DashboardLayout from "../Layout/DashboardLayout";
 import AddTask from "../DPages/AddTask";
 import Login from "../pages/Login";
+import EditTask from "../DPages/EditTask";
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,11 @@ const router = createBrowserRouter([
       {
         path:'add-task',
         element:<AddTask/>
-      }
+      },
+      {
+        path:'edit-task/:id',
+        element:<EditTask/>
+      },
     ]
   }
 ]);

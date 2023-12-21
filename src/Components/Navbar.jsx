@@ -12,12 +12,14 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import TaskIcon from '@mui/icons-material/Task';
+import { AuthContext } from '../Provider/AuthProvider';
+import { Link } from 'react-router-dom';
 
-const settings = ['Dashboard', 'Logout'];
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
+  const {user, logOut} = React.useContext(AuthContext)
+console.log('navbar user', user)
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -126,12 +128,26 @@ const Navbar = () => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
+            <Tooltip >
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+              {
+                user ? (<Avatar alt="Remy Sharp" src={user?.photoURL} />) : (
+                  <Link to='/login'>
+                  <Button variant='contained'
+                  onClick={()=> logOut()}
+                  >
+                    SignIn
+                  </Button>
+                  </Link>
+                )
+              }
+
+                
               </IconButton>
             </Tooltip>
-            <Menu
+            {
+              user ? (
+                <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
               anchorEl={anchorElUser}
@@ -139,6 +155,7 @@ const Navbar = () => {
                 vertical: 'top',
                 horizontal: 'right',
               }}
+
               keepMounted
               transformOrigin={{
                 vertical: 'top',
@@ -147,12 +164,27 @@ const Navbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem onClick={handleCloseUserMenu}
+              sx={{
+                display:'flex',
+                flexDirection:'column',
+                gap:'5px',
+                justifyContent:'start'
+              }}
+              >
+              <Link to='/dashboard'>
+              <Typography textAlign="center">
+                Dashboard</Typography>
+              </Link>
+              <Button variant='outlined'
+                  onClick={()=> logOut()}
+                  >
+                    Sign Out
+                  </Button>
+              </MenuItem>
             </Menu>
+              ) : null
+            }
           </Box>
         </Toolbar>
       </Container>
