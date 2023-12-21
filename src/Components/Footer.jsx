@@ -20,7 +20,8 @@ const Footer = () => {
       borderTop:'2px solid #444',
       borderBottom:'2px solid #444',
       display:'flex',
-      justifyContent: 'space-around'
+      justifyContent: 'space-around',
+      marginTop: '50px'
     }}
     
     value={value} onChange={handleChange}>
