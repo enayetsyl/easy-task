@@ -1,9 +1,64 @@
+import { useContext, useState } from 'react';
+import { toast } from 'react-toastify';
+
 import { useForm } from 'react-hook-form';
+import { AuthContext } from '../Provider/AuthProvider';
+import axios from 'axios';
+import { useMutation } from '@tanstack/react-query';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function App() {
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const onSubmit = data => console.log(data);
-  console.log(errors);
+
+  const {user} = useContext(AuthContext)
+  const [task, setTask] = useState(null)
+
+  const userEmail = user?.email;
+  const status = 'todo'
+
+  const addTask = async() => {
+    try{
+      const result = await axios.post(`http://localhost:5000/add-task`, task)
+      toast.success('Task added successfully!', {
+        position: 'top-right',
+        autoClose: 3000, // milliseconds
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return result;
+
+    }catch(error){
+      toast.error('Task cannot added. Please try again.', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+      throw error;
+    }
+    }
+
+    const {data, isPending: loading, isError, mutateAsync } = useMutation({
+     mutationFn: addTask,
+    })
+
+  const onSubmit = async (data) => {
+    const task = {...data, userEmail, status}
+    setTask(task)
+    try {
+      await mutateAsync()
+    } catch (error) {
+      console.log('from on submit', error)
+    }
+  }
   
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4'>
