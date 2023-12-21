@@ -5,6 +5,7 @@ import MainLayout from "../Layout/MainLayout";
 import Home from "../pages/Home";
 import DashboardLayout from "../Layout/DashboardLayout";
 import AddTask from "../DPages/AddTask";
+import Login from "../pages/Login";
 
 const router = createBrowserRouter([
   {
@@ -14,7 +15,12 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home/>
-      }
+      },
+      {
+        path: '/login',
+        element: <Login/>
+      },
+
     ]
   },{
     path:"dashboard",

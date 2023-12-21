@@ -18,8 +18,11 @@ const Footer = () => {
     <BottomNavigation 
     sx={{
       borderTop:'2px solid #444',
-      borderBottom:'2px solid #444'
+      borderBottom:'2px solid #444',
+      display:'flex',
+      justifyContent: 'space-around'
     }}
+    
     value={value} onChange={handleChange}>
 
           <BottomNavigationAction
