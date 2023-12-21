@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import TaskCard from "../Components/TaskCard";
 import { Typography } from "@mui/material";
+import { useDrop } from "react-dnd";
 
 const Ongoing = () => {
   
@@ -15,13 +16,33 @@ const Ongoing = () => {
     }
   })
 
+  const [, drop] = useDrop({
+    accept: 'Task',
+    drop: async (item) => {
+      const { id, status } = item;
+      try {
+        const result = await axios.put(`http://localhost:5000/update-task-status/${id}`, {
+          status:'ongoing'
+        });
+  
+        if(result.modifiedCount>0){
+          refetch();
+        }
+      } catch (error) {
+        console.error('Error updating task status:', error);
+      }
+    }
+  })
+
   if(isLoading){
     return <p>Loading........</p>
   }
   console.log(tasks)
   
   return (
-    <div className="border border-[#1976D2] px-2 py-4 rounded-lg space-y-2">
+    <div 
+    ref={drop}
+    className="border border-[#1976D2] px-2 py-4 rounded-lg space-y-2">
        <Typography variant="h5"
       textAlign={'center'}
       pb={2}

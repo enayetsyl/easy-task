@@ -2,9 +2,14 @@ import { Button, Typography } from "@mui/material";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
+import { useDrag } from "react-dnd";
 import { toast } from "react-toastify";
 
 const TaskCard = ({task, refetchData}) => {
+  const [, drag] = useDrag({
+    type:'Task',
+    item:{id: task._id, status: task.status},
+  })
   const [taskId, setTaskId] = useState('')
 
   const deleteTask = async() => {
@@ -44,7 +49,9 @@ const TaskCard = ({task, refetchData}) => {
     }
   }
   return (
-    <div className="border border-[#1976D2] rounded-lg p-2">
+    <div 
+    ref={drag}
+    className="border border-[#1976D2] rounded-lg p-2">
       <Typography variant="h6">Title: {task.TaskTitle}</Typography>
       <Typography variant="body2">Description: {task.TaskDescription}</Typography>
       <Typography variant="body2">Priority: {task.Priority
