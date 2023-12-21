@@ -2,12 +2,11 @@ import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import TaskCard from "../Components/TaskCard";
+import { Typography } from "@mui/material";
 
 const Ongoing = () => {
-  // const {user} = useContext(AuthContext)
-  // const userEmail = user.email;
-  // console.log(userEmail)
-
+  
   const {data:tasks, isLoading} = useQuery({
     queryKey:['ongoingTask'],
     queryFn: async () => {
@@ -22,8 +21,14 @@ const Ongoing = () => {
     console.log(tasks)
   
   return (
-    <div className="border border-[#1976D2] px-2 py-4 rounded-lg">
-Ongoing page      
+    <div className="border border-[#1976D2] px-2 py-4 rounded-lg space-y-2">
+       <Typography variant="h5"
+      textAlign={'center'}
+      pb={2}
+      >Ongoing Task</Typography>
+      {
+        tasks.map(task => <TaskCard key={task._id} task={task}/>)
+      }
     </div>
   );
 };

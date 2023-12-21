@@ -10,7 +10,7 @@ const AllTask = () => {
 <h1 className="mt-10">
 this is all task page 
   </h1>     
-  <div className="flex justify-between items-center gap-5">
+  <div className="flex flex-col md:flex-row justify-between items-start gap-5">
     <Todo className='flex-auto' />
     <Ongoing className='flex-auto'/>
     <Completed className='flex-auto'/>
