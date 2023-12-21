@@ -1,10 +1,12 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import TaskCard from "../Components/TaskCard";
 import { Typography } from "@mui/material";
 import { useDrop } from "react-dnd";
 
 const Todo = () => {
+  const queryClient = useQueryClient();
+
   const {data:tasks, isLoading, refetch} = useQuery({
     queryKey:['todoTask'],
     queryFn: async () => {
@@ -20,9 +22,10 @@ const Todo = () => {
         const result = await axios.put(`http://localhost:5000/update-task-status/${id}`, {
           status:'todo'
         });
-  
-       if(result.modifiedCount>0){
-         refetch();
+        console.log(result)
+       if(result.data.modifiedCount>0){
+        queryClient.invalidateQueries('todoTask');
+        // refetch()
        }
       } catch (error) {
         console.error('Error updating task status:', error);

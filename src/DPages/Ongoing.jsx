@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
-import { useQuery } from "@tanstack/react-query";
+import { QueryCache, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import TaskCard from "../Components/TaskCard";
 import { Typography } from "@mui/material";
 import { useDrop } from "react-dnd";
 
 const Ongoing = () => {
-  
+  const queryClient = useQueryClient();
   const {data:tasks, isLoading, refetch} = useQuery({
     queryKey:['ongoingTask'],
     queryFn: async () => {
@@ -25,8 +25,8 @@ const Ongoing = () => {
           status:'ongoing'
         });
   
-        if(result.modifiedCount>0){
-          refetch();
+        if(result.data.modifiedCount>0){
+          queryClient.invalidateQueries('todoTask');
         }
       } catch (error) {
         console.error('Error updating task status:', error);
