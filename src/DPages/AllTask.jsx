@@ -17,7 +17,7 @@ const AllTask = () => {
     pb={3}
     >Your Tasks</Typography>
     <DndProvider backend={HTML5Backend}>
-  <div className="flex flex-col md:flex-row justify-center md:items-start gap-5">
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
     <Todo className='flex-auto' />
     <Ongoing className='flex-auto'/>
 

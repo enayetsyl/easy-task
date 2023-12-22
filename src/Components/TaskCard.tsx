@@ -94,15 +94,24 @@ const TaskCard: React.FC<{ task: Task; refetchData: () => void }> = ({ task, ref
     <motion.div whileHover={shakeAnimation} className="flex-auto">
     <div 
     ref={drag}
-    className="border border-[#1976D2] rounded-lg p-2 space-y-1">
+    className="border border-[#1976D2] rounded-lg p-2 space-y-1 min-w-64 text-center">
       <Typography variant="h6">Title: {task.TaskTitle}</Typography>
-      <Typography variant="body2">Description: {task.TaskDescription}</Typography>
-      <Typography variant="body2">Priority: {task.Priority
+
+      <Typography variant="body2"
+      textAlign={'left'}
+      >Description: {task.TaskDescription}</Typography>
+
+      <Typography 
+       textAlign={'left'}
+      variant="body2">Priority: {task.Priority
 }</Typography>
       
-      <Typography variant="body2">Deadline: {formatDate(task.Deadlines)}</Typography>
+      <Typography 
+       textAlign={'left'}
+      variant="body2">Deadline: {formatDate(task.Deadlines)}</Typography>
       
       <Typography variant="body2"
+      textAlign={'left'}
       style={daysRemainingStyle}
       >Days Remaining: {daysRemainingText}</Typography>
 

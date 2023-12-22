@@ -27,7 +27,6 @@ const Ongoing = () => {
       }
     },
   });
-console.log(tasks)
   const [, drop] = useDrop({
     accept: 'Task',
     drop: async (item) => {
@@ -49,7 +48,6 @@ console.log(tasks)
   if(isLoading){
     return <p>Loading........</p>
   }
-  console.log(tasks)
   
   return (
     <div 

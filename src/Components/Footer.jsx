@@ -62,7 +62,9 @@ const Footer = () => {
           target="_blank"
         />
       </BottomNavigation>
-      <Typography textAlign="center" variant="body2">
+      <Typography textAlign="center" variant="body2"
+      color={'#fff'}
+      >
         copyright@ Md Enayetur Rahman 01730197620
       </Typography>
     </Box>

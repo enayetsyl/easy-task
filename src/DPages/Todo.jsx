@@ -26,7 +26,6 @@ const Todo = () => {
       }
     },
   });
-console.log(tasks)
 
   const [, drop] = useDrop({
     accept: 'Task',

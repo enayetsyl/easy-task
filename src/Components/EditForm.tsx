@@ -76,7 +76,7 @@ const EditForm = ({task}) => {
       <option value=" High"> High</option>
     </select>
 
-    <input type="submit" className='border border-solid border-black py-1 rounded-lg bg-[#1976D2] text-white font-bold' />
+    <input type="submit" value={'Update'} className='border border-solid border-black py-1 rounded-lg bg-[#1976D2] text-white font-bold cursor-pointer' />
   </form>
   );
 };
