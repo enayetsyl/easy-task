@@ -26,7 +26,7 @@ const Ongoing = () => {
       }
     },
   });
-
+console.log(tasks)
   const [, drop] = useDrop({
     accept: 'Task',
     drop: async (item) => {

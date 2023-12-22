@@ -3,12 +3,10 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Box, Button, Paper, Typography } from "@mui/material";
 import GoogleIcon from '@mui/icons-material/Google';
-import GitHubIcon from '@mui/icons-material/GitHub';
 import { toast } from "react-toastify";
 
 const Login = () => {
-const { gitHubSignIn,
-  googleSignIn} = useContext(AuthContext)
+const { googleSignIn} = useContext(AuthContext)
   const location = useLocation()
   const navigate = useNavigate()
 

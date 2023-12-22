@@ -1,14 +1,23 @@
 import { Button, Typography } from "@mui/material";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useDrag } from "react-dnd";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { motion } from 'framer-motion';
 
+interface Task {
+  Deadlines: string;
+  Priority: string;
+  TaskDescription: string;
+  TaskTitle: string;
+  status: string;
+  userEmail: string;
+  _id: string;
+}
 
-const TaskCard = ({task, refetchData}) => {
+const TaskCard: React.FC<{ task: Task; refetchData: () => void }> = ({ task, refetchData }) => {
   const shakeAnimation = {
     x: [0, -5, 5, -5, 5, 0], // Define the shake animation sequence
     transition: { duration: 0.6 }, // Set the duration of the shake animation
@@ -56,16 +65,19 @@ const TaskCard = ({task, refetchData}) => {
       console.log('handle delete clg error', error)
     }
   }
-  const formatDate = (dateString) => {
-    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+
+  const formatDate = (dateString: string): string => {
+    const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'short', day: 'numeric' };
     const formattedDate = new Date(dateString).toLocaleDateString(undefined, options);
     return formattedDate;
   };
+  
+  
 
-  const calculateDaysRemaining = (deadline) => {
+  const calculateDaysRemaining = (deadline: string): number => {
     const today = new Date();
     const deadlineDate = new Date(deadline);
-    const timeDifference = deadlineDate - today;
+    const timeDifference = deadlineDate.getTime() - today.getTime();
     const daysRemaining = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
     return daysRemaining;
   };
