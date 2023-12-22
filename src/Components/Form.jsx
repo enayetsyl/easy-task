@@ -6,11 +6,12 @@ import { AuthContext } from '../Provider/AuthProvider';
 import axios from 'axios';
 import { useMutation } from '@tanstack/react-query';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router';
 
 
 export default function App() {
   const { register, handleSubmit, formState: { errors } } = useForm();
-
+  const navigate = useNavigate() 
   const {user} = useContext(AuthContext)
   const [task, setTask] = useState(null)
 
@@ -29,6 +30,7 @@ export default function App() {
         draggable: true,
         progress: undefined,
       });
+      navigate('/dashboard')
       return result;
 
     }catch(error){
@@ -67,7 +69,7 @@ export default function App() {
       className='border py-1 px-2 rounded-lg border-[#1976D2]'
       />
       <label >Task Description</label>
-      <input type="text" placeholder="TaskDescription" {...register("Task Description", {required: true})}
+      <input type="text" placeholder="TaskDescription" {...register("TaskDescription", {required: true})}
       className='border py-1 px-2 rounded-lg border-[#1976D2]'
       />
       <label >Deadline</label>
