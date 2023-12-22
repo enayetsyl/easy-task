@@ -107,9 +107,30 @@ const Navbar = () => {
                <Link to='/dashboard'>
                <Typography textAlign='center'
               sx={{
-                textTransform: 'capitalize'
+                textTransform: 'capitalize',
+                ":hover":{
+                  borderBottom: "1px solid",
+        borderColor: "primary.main", // You can set the color according to your theme
+        display: "inline-block", 
+                }
               }}
               >Dashboard</Typography>
+               </Link>
+              </MenuItem>
+              <MenuItem
+              onClick={handleCloseNavMenu}
+              >
+               <Link to='/dashboard/add-task'>
+               <Typography textAlign='center'
+              sx={{
+                textTransform: 'capitalize',
+                ":hover":{
+                  borderBottom: "1px solid",
+        borderColor: "primary.main", // You can set the color according to your theme
+        display: "inline-block", 
+                }
+              }}
+              >Add Task</Typography>
                </Link>
               </MenuItem>
            
@@ -153,13 +174,21 @@ const Navbar = () => {
                   Dashboard
               </Button>
           </Link>
+          <Link to={'/dashboard/add-task'}>
+          <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                  Add Task
+              </Button>
+          </Link>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip >
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
               {
-                user ? (<Avatar alt="Remy Sharp" src={user?.photoURL} />) : (
+                user ? (<Avatar alt="user image" src={user?.photoURL} />) : (
                   <Link to='/login'>
                   <Button variant='contained'
                   onClick={()=> logOut()}

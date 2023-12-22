@@ -8,6 +8,7 @@ import AddTask from "../DPages/AddTask";
 import Login from "../pages/Login";
 import EditTask from "../DPages/EditTask";
 import AllTask from "../DPages/AllTask";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -26,19 +27,19 @@ const router = createBrowserRouter([
     ]
   },{
     path:"dashboard",
-    element:<DashboardLayout/>,
+    element:<PrivateRoute><DashboardLayout/></PrivateRoute>,
     children:[
       {
         index:true,
-        element:<AllTask/>
+        element:<PrivateRoute><AllTask/></PrivateRoute>
       },
       {
         path:'add-task',
-        element:<AddTask/>
+        element:<PrivateRoute><AddTask/></PrivateRoute>
       },
       {
         path:'edit-task/:id',
-        element:<EditTask/>
+        element:<PrivateRoute><EditTask/></PrivateRoute>
       },
     ]
   }
