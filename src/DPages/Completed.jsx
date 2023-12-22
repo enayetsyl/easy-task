@@ -1,54 +1,10 @@
-import {  useQuery, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
 import TaskCard from "../Components/TaskCard";
 import { Typography } from "@mui/material";
-import { useDrop } from "react-dnd";
-import { useContext } from "react";
-import { AuthContext } from "../Provider/AuthProvider";
+import useCommonTask from "../Components/CommonTaskComponent";
 
 const Completed = () => {
-  const queryClient = useQueryClient();
-  const { user } = useContext(AuthContext);
 
-  const {data:tasks, isLoading, refetch} = useQuery({
-    queryKey:['completedTask'],
-    // , { status: 'completed', email: user.email }
-    queryFn: async () => {
-      try {
-        const result = await axios.get(`https://task-management-server-rust.vercel.app/all-tasks`, {
-          params: {
-            status: 'completed',
-            email: user.email,
-          }
-        })
-        return result.data
-      } catch (error) {
-        console.error('Error fetching ongoing tasks:', error);
-      }
-    },
-    staleTime: 3000,
-  })
-
-  
-  const [, drop] = useDrop({
-    accept: 'Task',
-    drop: async (item) => {
-      const { id } = item;
-      try {
-        const result = await axios.put(`https://task-management-server-rust.vercel.app/update-task-status/${id}`, {
-          status:'completed'
-        });
-  console.log(result)
-        if(result.status === 200){
-          queryClient.invalidateQueries('completedTask');
-        }
-
-             } 
-       catch (error) {
-        console.error('Error updating task status:', error);
-      }
-    }
-  })
+  const { tasks, isLoading, refetch, drop } = useCommonTask("completed", ["completedTask"]);
 
   if(isLoading){
     return <p>Loading........</p>
