@@ -11,10 +11,11 @@ const Ongoing = () => {
   const { user } = useContext(AuthContext);
 
   const { data: tasks, isLoading, refetch } = useQuery({
-    queryKey: ['ongoingTask', { status: 'ongoing', email: user.email }], // Include email and status in the query key
+    queryKey: ['ongoingTask'], 
+    // Include email and status in the query key , { status: 'ongoing', email: user.email }
     queryFn: async () => {
       try {
-        const result = await axios.get(`http://localhost:5000/all-tasks`, {
+        const result = await axios.get(`https://task-management-server-rust.vercel.app/all-tasks`, {
           params: {
             status: 'ongoing',
             email: user.email,
@@ -32,11 +33,11 @@ console.log(tasks)
     drop: async (item) => {
       const { id} = item;
       try {
-        const result = await axios.put(`http://localhost:5000/update-task-status/${id}`, {
+        const result = await axios.put(`https://task-management-server-rust.vercel.app/update-task-status/${id}`, {
           status:'ongoing'
         });
   
-        if(result.data.modifiedCount>0){
+        if(result.status === 200){
           queryClient.invalidateQueries('ongoingTask');
         }
       } catch (error) {

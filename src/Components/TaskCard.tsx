@@ -31,7 +31,7 @@ const TaskCard: React.FC<{ task: Task; refetchData: () => void }> = ({ task, ref
 
   const deleteTask = async() => {
     try {
-      const result = await axios.delete(`http://localhost:5000/delete-task/${taskId}`)
+      const result = await axios.delete(`https://task-management-server-rust.vercel.app/delete-task/${taskId}`)
       console.log('deleteTask clg', result)
       toast.success('Task deleted successfully!', {
         position: 'top-right',

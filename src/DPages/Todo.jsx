@@ -11,10 +11,10 @@ const Todo = () => {
   const {user} = useContext(AuthContext)
 
   const { data: tasks, isLoading, refetch } = useQuery({
-    queryKey: ['todoTask', { status: 'todo', email: user.email }], // Include email in the query key
+    queryKey: ['todoTask'], // Include email in the query key , { status: 'todo', email: user.email }
     queryFn: async () => {
       try {
-        const result = await axios.get(`http://localhost:5000/all-tasks`, {
+        const result = await axios.get(`https://task-management-server-rust.vercel.app/all-tasks`, {
           params: {
             status: 'todo',
             email: user.email,
@@ -33,11 +33,11 @@ console.log(tasks)
     drop: async (item) => {
       const { id } = item;
       try {
-        const result = await axios.put(`http://localhost:5000/update-task-status/${id}`, {
+        const result = await axios.put(`https://task-management-server-rust.vercel.app/update-task-status/${id}`, {
           status:'todo'
         });
         console.log(result)
-       if(result.data.modifiedCount>0){
+       if(result.status === 200){
         queryClient.invalidateQueries('todoTask');
         // refetch()
        }

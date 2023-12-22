@@ -11,10 +11,11 @@ const Completed = () => {
   const { user } = useContext(AuthContext);
 
   const {data:tasks, isLoading, refetch} = useQuery({
-    queryKey:['completedTask', { status: 'completed', email: user.email }],
+    queryKey:['completedTask'],
+    // , { status: 'completed', email: user.email }
     queryFn: async () => {
       try {
-        const result = await axios.get(`http://localhost:5000/all-tasks`, {
+        const result = await axios.get(`https://task-management-server-rust.vercel.app/all-tasks`, {
           params: {
             status: 'completed',
             email: user.email,
@@ -24,7 +25,8 @@ const Completed = () => {
       } catch (error) {
         console.error('Error fetching ongoing tasks:', error);
       }
-    }
+    },
+    staleTime: 3000,
   })
 
   
@@ -33,11 +35,11 @@ const Completed = () => {
     drop: async (item) => {
       const { id } = item;
       try {
-        const result = await axios.put(`http://localhost:5000/update-task-status/${id}`, {
+        const result = await axios.put(`https://task-management-server-rust.vercel.app/update-task-status/${id}`, {
           status:'completed'
         });
-  
-        if(result.data.modifiedCount>0){
+  console.log(result)
+        if(result.status === 200){
           queryClient.invalidateQueries('completedTask');
         }
 
