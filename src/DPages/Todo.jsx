@@ -9,7 +9,6 @@ import { AuthContext } from "../Provider/AuthProvider";
 const Todo = () => {
   const queryClient = useQueryClient();
   const {user} = useContext(AuthContext)
-  console.log(user.email)
 
   const { data: tasks, isLoading, refetch } = useQuery({
     queryKey: ['todoTask', { status: 'todo', email: user.email }], // Include email in the query key
@@ -27,7 +26,7 @@ const Todo = () => {
       }
     },
   });
-
+console.log(tasks)
 
   const [, drop] = useDrop({
     accept: 'Task',

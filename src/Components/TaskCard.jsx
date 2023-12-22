@@ -56,18 +56,45 @@ const TaskCard = ({task, refetchData}) => {
       console.log('handle delete clg error', error)
     }
   }
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    const formattedDate = new Date(dateString).toLocaleDateString(undefined, options);
+    return formattedDate;
+  };
 
+  const calculateDaysRemaining = (deadline) => {
+    const today = new Date();
+    const deadlineDate = new Date(deadline);
+    const timeDifference = deadlineDate - today;
+    const daysRemaining = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+    return daysRemaining;
+  };
+
+  const daysRemaining = calculateDaysRemaining(task.Deadlines);
+  const daysRemainingStyle = {
+    color: daysRemaining <= 2 ? '#FF0000' : 'inherit',
+    fontWeight: daysRemaining <= 2 ? 'bold' : 'normal',
+  };
+
+  const daysRemainingText = daysRemaining <= 0 ? 'Deadline passed' : daysRemaining;
 
   return (
     <motion.div whileHover={shakeAnimation} className="flex-auto">
     <div 
     ref={drag}
-    className="border border-[#1976D2] rounded-lg p-2">
+    className="border border-[#1976D2] rounded-lg p-2 space-y-1">
       <Typography variant="h6">Title: {task.TaskTitle}</Typography>
       <Typography variant="body2">Description: {task.TaskDescription}</Typography>
       <Typography variant="body2">Priority: {task.Priority
 }</Typography>
-      <Typography variant="body2">Deadline: {task.Deadlines}</Typography>
+      
+      <Typography variant="body2">Deadline: {formatDate(task.Deadlines)}</Typography>
+      
+      <Typography variant="body2"
+      style={daysRemainingStyle}
+      >Days Remaining: {daysRemainingText}</Typography>
+
+
       <Button 
       onClick={() => handleDelete(task._id)}
       variant="contained"
