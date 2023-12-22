@@ -5,8 +5,15 @@ import { useState } from "react";
 import { useDrag } from "react-dnd";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { motion } from 'framer-motion';
+
 
 const TaskCard = ({task, refetchData}) => {
+  const shakeAnimation = {
+    x: [0, -5, 5, -5, 5, 0], // Define the shake animation sequence
+    transition: { duration: 0.6 }, // Set the duration of the shake animation
+  };
+
   const [, drag] = useDrag({
     type:'Task',
     item:{id: task._id, status: task.status},
@@ -52,6 +59,7 @@ const TaskCard = ({task, refetchData}) => {
 
 
   return (
+    <motion.div whileHover={shakeAnimation} className="flex-auto">
     <div 
     ref={drag}
     className="border border-[#1976D2] rounded-lg p-2">
@@ -76,6 +84,7 @@ const TaskCard = ({task, refetchData}) => {
       </Link>
       
     </div>
+    </motion.div>
   );
 };
 

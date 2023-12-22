@@ -15,6 +15,8 @@ const Footer = () => {
     setValue(newValue);
   };
 
+  
+
   return (
  <Box  sx={{
   borderTop:'2px solid #444',
