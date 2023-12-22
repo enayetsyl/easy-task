@@ -3,14 +3,27 @@ import axios from "axios";
 import TaskCard from "../Components/TaskCard";
 import { Typography } from "@mui/material";
 import { useDrop } from "react-dnd";
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Completed = () => {
   const queryClient = useQueryClient();
+  const { user } = useContext(AuthContext);
+
   const {data:tasks, isLoading, refetch} = useQuery({
-    queryKey:['completedTask'],
+    queryKey:['completedTask', { status: 'completed', email: user.email }],
     queryFn: async () => {
-      const result = await axios.get(`http://localhost:5000/all-tasks?status=completed`)
-      return result.data
+      try {
+        const result = await axios.get(`http://localhost:5000/all-tasks`, {
+          params: {
+            status: 'completed',
+            email: user.email,
+          }
+        })
+        return result.data
+      } catch (error) {
+        console.error('Error fetching ongoing tasks:', error);
+      }
     }
   })
 

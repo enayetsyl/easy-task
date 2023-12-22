@@ -8,13 +8,24 @@ import { useDrop } from "react-dnd";
 
 const Ongoing = () => {
   const queryClient = useQueryClient();
-  const {data:tasks, isLoading, refetch} = useQuery({
-    queryKey:['ongoingTask'],
+  const { user } = useContext(AuthContext);
+
+  const { data: tasks, isLoading, refetch } = useQuery({
+    queryKey: ['ongoingTask', { status: 'ongoing', email: user.email }], // Include email and status in the query key
     queryFn: async () => {
-      const result = await axios.get(`http://localhost:5000/all-tasks?status=ongoing`)
-      return result.data
-    }
-  })
+      try {
+        const result = await axios.get(`http://localhost:5000/all-tasks`, {
+          params: {
+            status: 'ongoing',
+            email: user.email,
+          },
+        });
+        return result.data;
+      } catch (error) {
+        console.error('Error fetching ongoing tasks:', error);
+      }
+    },
+  });
 
   const [, drop] = useDrop({
     accept: 'Task',

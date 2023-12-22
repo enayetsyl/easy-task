@@ -3,17 +3,32 @@ import axios from "axios";
 import TaskCard from "../Components/TaskCard";
 import { Typography } from "@mui/material";
 import { useDrop } from "react-dnd";
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Todo = () => {
   const queryClient = useQueryClient();
+  const {user} = useContext(AuthContext)
+  console.log(user.email)
 
-  const {data:tasks, isLoading, refetch} = useQuery({
-    queryKey:['todoTask'],
+  const { data: tasks, isLoading, refetch } = useQuery({
+    queryKey: ['todoTask', { status: 'todo', email: user.email }], // Include email in the query key
     queryFn: async () => {
-      const result = await axios.get(`http://localhost:5000/all-tasks?status=todo`)
-      return result.data
-    }
-  })
+      try {
+        const result = await axios.get(`http://localhost:5000/all-tasks`, {
+          params: {
+            status: 'todo',
+            email: user.email,
+          },
+        });
+        return result.data;
+      } catch (error) {
+        console.error('Error fetching todo tasks:', error);
+      }
+    },
+  });
+
+
   const [, drop] = useDrop({
     accept: 'Task',
     drop: async (item) => {
