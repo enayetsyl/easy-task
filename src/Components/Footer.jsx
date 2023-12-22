@@ -6,7 +6,7 @@ import WorkIcon from "@mui/icons-material/Work";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import { Link } from "react-router-dom";
-import { Box, Typography } from "@mui/material";
+import { Box, Paper, Typography } from "@mui/material";
 
 const Footer = () => {
   const [value, setValue] = React.useState("portfolio");
@@ -16,20 +16,15 @@ const Footer = () => {
   };
 
   return (
-    <Box
+    <Paper elevation={20}>
+      <Box
       sx={{
-        borderTop: "2px solid #444",
         display: "flex",
         flexDirection: "column",
         backgroundColor: "#1976D2",
       }}
     >
       <BottomNavigation value={value} onChange={handleChange}>
-        {/* <BottomNavigationAction
-        label="Portfolio"
-        value="portfolio"
-        icon={<Link to={'https://enayet-portfolio.netlify.app/'}><WorkIcon /></Link>}
-        /> */}
 
         <BottomNavigationAction
           label="Portfolio"
@@ -71,6 +66,7 @@ const Footer = () => {
         copyright@ Md Enayetur Rahman 01730197620
       </Typography>
     </Box>
+    </Paper>
   );
 };
 

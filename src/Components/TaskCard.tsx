@@ -118,7 +118,7 @@ const TaskCard: React.FC<{ task: Task; refetchData: () => void }> = ({ task, ref
       variant="contained"
       size="small"
       color="info"
-      sx={{marginLeft:'5px'}}
+      sx={{marginLeft:'5px', marginTop: '5px' }}
       >Edit</Button>
       </Link>
       
