@@ -3,6 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
 import { useDrag } from "react-dnd";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const TaskCard = ({task, refetchData}) => {
@@ -48,6 +49,8 @@ const TaskCard = ({task, refetchData}) => {
       console.log('handle delete clg error', error)
     }
   }
+
+
   return (
     <div 
     ref={drag}
@@ -63,6 +66,14 @@ const TaskCard = ({task, refetchData}) => {
       size="small"
       color="error"
       >Delete</Button>
+      <Link to={`/dashboard/edit-task/${task._id}`}>
+      <Button 
+      variant="contained"
+      size="small"
+      color="info"
+      sx={{marginLeft:'5px'}}
+      >Edit</Button>
+      </Link>
       
     </div>
   );

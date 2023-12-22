@@ -26,7 +26,7 @@ const Ongoing = () => {
         });
   
         if(result.data.modifiedCount>0){
-          queryClient.invalidateQueries('todoTask');
+          queryClient.invalidateQueries('ongoingTask');
         }
       } catch (error) {
         console.error('Error updating task status:', error);

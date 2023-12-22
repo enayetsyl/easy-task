@@ -25,7 +25,7 @@ const Completed = () => {
         });
   
         if(result.data.modifiedCount>0){
-          queryClient.invalidateQueries('todoTask');
+          queryClient.invalidateQueries('completedTask');
         }
 
              } 
