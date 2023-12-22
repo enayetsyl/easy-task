@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import  { useRef } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -45,7 +45,7 @@ const userReview = [
     "review": "The task management website is fantastic for keeping my personal and professional tasks organized. It's intuitive, and the calendar integration is a game-changer for planning my schedule."
   },
   {
-    "image": "https://example.com/user7.jpg",
+    "image": "https://t4.ftcdn.net/jpg/02/92/95/17/240_F_292951705_zv47wnXkjzHzSouYLpYcNgTOOosDv1ml.jpg",
     "name": "George Hernandez",
     "review": "I've tried several task management tools, but this website is by far the most user-friendly. The simplicity combined with powerful features makes it a standout choice for individuals and teams alike."
   },

@@ -4,6 +4,17 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import React from "react";
+
+interface Task {
+  Deadlines: string;
+  Priority: string;
+  TaskDescription: string;
+  TaskTitle: string;
+  status: string;
+  userEmail: string;
+  _id: string;
+}
 
 const EditForm = ({task}) => {
   const {Deadlines, Priority, TaskDescription, TaskTitle, status, userEmail, _id} = task
@@ -30,7 +41,7 @@ const EditForm = ({task}) => {
           draggable: true,
           progress: undefined,
         });
-        queryClient.invalidateQueries('edit-task');
+        // queryClient.invalidateQueries('edit-task');
       }
       navigate('/dashboard')
     } catch (error) {

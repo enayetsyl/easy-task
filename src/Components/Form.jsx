@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router';
 
 
-export default function App() {
+export default function Form() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const navigate = useNavigate() 
   const {user} = useContext(AuthContext)
@@ -48,7 +48,7 @@ export default function App() {
     }
     }
 
-    const {data, isPending: loading, isError, mutateAsync } = useMutation({
+    const {mutateAsync } = useMutation({
      mutationFn: addTask,
     })
 

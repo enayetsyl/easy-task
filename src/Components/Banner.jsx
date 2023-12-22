@@ -7,7 +7,6 @@ import { AuthContext } from '../Provider/AuthProvider';
 
 const Banner = () => {
   const {user} = useContext(AuthContext)
-  console.log('user from banner', user)
   return (
     <Box position='relative'>
       <Container >

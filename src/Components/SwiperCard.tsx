@@ -1,9 +1,14 @@
 import { Box, Typography } from "@mui/material";
+import React from 'react';
 
+interface Review {
+  image: string;
+  name: string;
+  review: string;
 
+}
 
-const SwiperCard = ({review}) => {
-  console.log(review)
+const SwiperCard: React.FC<{review: Review}> = ({review}) => {
   return (
    <div>
     <Box 

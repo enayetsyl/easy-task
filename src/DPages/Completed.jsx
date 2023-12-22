@@ -1,4 +1,4 @@
-import { QueryCache, useQuery, useQueryClient } from "@tanstack/react-query";
+import {  useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import TaskCard from "../Components/TaskCard";
 import { Typography } from "@mui/material";
@@ -31,7 +31,7 @@ const Completed = () => {
   const [, drop] = useDrop({
     accept: 'Task',
     drop: async (item) => {
-      const { id, status } = item;
+      const { id } = item;
       try {
         const result = await axios.put(`http://localhost:5000/update-task-status/${id}`, {
           status:'completed'
