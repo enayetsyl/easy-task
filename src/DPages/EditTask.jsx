@@ -10,7 +10,7 @@ const EditTask = () => {
   const {data:task, isLoading} = useQuery({
     queryKey:['edit-task'],
     queryFn: async() => {
-      const result = await axios.get(`https://task-management-server-rust.vercel.app/single-task/${id}`)
+      const result = await axios.get(`http://localhost:5000/single-task/${id}`)
       return result.data;
     }
   })

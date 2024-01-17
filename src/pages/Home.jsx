@@ -1,12 +1,14 @@
 import Banner from "../Components/Banner";
+import FeaturedServices from "../Components/FeaturedServices";
 import Review from "../Components/Review";
 
 const Home = () => {
   return (
     <div className="">
 <Banner/>    
-<Review/>
 {/* <SwiperCard/> */}
+<FeaturedServices/>
+<Review/>
     </div>
   );
 };

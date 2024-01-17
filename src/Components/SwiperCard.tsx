@@ -21,16 +21,16 @@ const SwiperCard: React.FC<{review: Review}> = ({review}) => {
          }}
     >
     <img src={review.image} alt="" 
-        style={{ height: '40px', width: '40px', borderRadius: '50%' }}
+        style={{ height: '100px', width: '100px', borderRadius: '50%' }}
         />
         <Typography
         variant="h5"
-     
+         py={2}
         >{review.name}</Typography>
         <Typography
         variant="body1"
         sx={{
-          width: '80%'
+          width: '60%'
         }}
         >{review.review}</Typography>
     </Box>

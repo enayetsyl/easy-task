@@ -6,6 +6,7 @@ const Review = () => {
     <div className="space-y-5 my-14">
       <Typography variant="h3"
       textAlign='center'
+      pb={6}
       >
         Our User Say
       </Typography>
