@@ -83,9 +83,7 @@
 
 - Prettier: A code formatter.
 
-### TypeScript:
 
-- TypeScript: A superset of JavaScript that adds static typing.
 
 ### Other Tools:
 
