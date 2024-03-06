@@ -18,7 +18,7 @@ const Ongoing = () => {
       pb={2}
       >Ongoing Task</Typography>
       {
-        tasks.map(task => <TaskCard key={task._id} task={task} refetchData={refetch}/>)
+        tasks?.map(task => <TaskCard key={task._id} task={task} refetchData={refetch}/>)
       }
     </div>
   );

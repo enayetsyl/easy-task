@@ -20,10 +20,10 @@ export default function Form() {
 
   const addTask = async() => {
     try{
-      const result = await axios.post(`http://localhost:5000/add-task`, task)
+      const result = await axios.post(`https://task-management-server-rust.vercel.app/add-task`, task)
       toast.success('Task added successfully!', {
         position: 'top-right',
-        autoClose: 3000, // milliseconds
+        autoClose: 3000, 
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -58,7 +58,6 @@ export default function Form() {
     try {
       await mutateAsync()
     } catch (error) {
-      console.log('from on submit', error)
     }
   }
   

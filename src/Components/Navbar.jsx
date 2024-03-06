@@ -35,15 +35,18 @@ const Navbar = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static"
+   
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <TaskIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <Link to='/'>
           <Typography
             variant="h5"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+           
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -57,6 +60,7 @@ const Navbar = () => {
           >
             Easy-Task
           </Typography>
+          </Link>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -137,6 +141,7 @@ const Navbar = () => {
             </Menu>
           </Box>
           <TaskIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          <Link to='/'>
           <Typography
             variant="h5"
             noWrap
@@ -156,6 +161,7 @@ const Navbar = () => {
           >
             Easy-Task
           </Typography>
+          </Link>
           
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
           <Link to={'/'}>

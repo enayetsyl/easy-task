@@ -5,6 +5,13 @@ import { Box, Button, Container } from "@mui/material";
 import { useContext } from 'react';
 import { AuthContext } from '../Provider/AuthProvider';
 
+const buttonVariants = {
+ 
+visible: {opacity: 1},
+hidden: {opacity: 0},
+}
+
+
 const Banner = () => {
   const {user} = useContext(AuthContext)
   return (
@@ -28,35 +35,27 @@ const Banner = () => {
         {
           user ? ( <Link to={'/dashboard'}>
           
-          <motion.div
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 2.8 }}
-          whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }}
-          >
-          <Button variant='contained'
-          sx={{
-            backgroundColor:'white',
-            color:'black',
-          }}
-          >Let's Explore</Button>
-          </motion.div>
+          <motion.button
+          className='bg-[#1976d2] text-white py-2 px-4 rounded-lg '
+          variants={buttonVariants}
+            initial= 'hidden'
+            animate='visible'
+            transition={{duration: 0.8, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut'}}
+
+          >Let's Explore</motion.button>
 
           </Link>) : (
             <Link to={'/login'}>
-        <motion.div
-         initial={{ opacity: 0, y: -50 }}
-         animate={{ opacity: 1, y: 0 }}
-         transition={{ duration: 2.8 }}
-         whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }}
-        >
-        <Button variant='contained'
-        sx={{
-          backgroundColor:'white',
-          color:'black',
-        }}
-        >Let's Explore</Button>
-        </motion.div>
+       
+          <motion.button
+          className='bg-[#1976d2] text-white py-2 px-4 rounded-lg '
+          variants={buttonVariants}
+            initial= 'hidden'
+            animate='visible'
+            transition={{duration: 0.8, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut'}}
+
+          >Let's Explore</motion.button>
+        
         </Link>
           )
         }

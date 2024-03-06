@@ -91,7 +91,7 @@ const SwiperComponent = () => {
         className="mySwiper"
       >
         {
-          userReview.map((review,idx) => (
+          userReview?.map((review,idx) => (
             <SwiperSlide key={idx}>
               <SwiperCard review={review}/>
             </SwiperSlide>

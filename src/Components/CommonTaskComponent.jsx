@@ -12,7 +12,7 @@ const useCommonTask = (status, queryKey) => {
     queryKey,
     queryFn: async () => {
       try {
-        const result = await axios.get("http://localhost:5000/all-tasks", {
+        const result = await axios.get("https://task-management-server-rust.vercel.app/all-tasks", {
           params: {
             status,
             email: user.email,
@@ -30,7 +30,7 @@ const useCommonTask = (status, queryKey) => {
     drop: async (item) => {
       const { id } = item;
       try {
-        const result = await axios.put(`http://localhost:5000/update-task-status/${id}`, {
+        const result = await axios.put(`https://task-management-server-rust.vercel.app/update-task-status/${id}`, {
           status,
         });
         if (result.status === 200) {

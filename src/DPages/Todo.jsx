@@ -17,7 +17,7 @@ const Todo = () => {
       pb={2}
       >Todo Task</Typography>
       {
-        tasks.map(task => <TaskCard key={task._id} task={task} refetchData={refetch}/>)
+        tasks?.map(task => <TaskCard key={task._id} task={task} refetchData={refetch}/>)
       }
     </div>
   );

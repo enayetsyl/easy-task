@@ -31,8 +31,7 @@ const TaskCard: React.FC<{ task: Task; refetchData: () => void }> = ({ task, ref
 
   const deleteTask = async() => {
     try {
-      const result = await axios.delete(`http://localhost:5000/delete-task/${taskId}`)
-      console.log('deleteTask clg', result)
+      const result = await axios.delete(`https://task-management-server-rust.vercel.app/delete-task/${taskId}`)
       toast.success('Task deleted successfully!', {
         position: 'top-right',
         autoClose: 3000, // milliseconds
@@ -44,7 +43,7 @@ const TaskCard: React.FC<{ task: Task; refetchData: () => void }> = ({ task, ref
       });
       return result
     } catch (error) {
-      console.log('deleteTask clg', error)
+      console.error('deleteTask clg', error)
       throw error
     }
   }
@@ -57,12 +56,11 @@ const TaskCard: React.FC<{ task: Task; refetchData: () => void }> = ({ task, ref
   })
 
   const handleDelete = async(id) => {
-    console.log('clicked', id)
     setTaskId(id)
     try {
       await mutateAsync()
     } catch (error) {
-      console.log('handle delete clg error', error)
+      console.error('handle delete clg error', error)
     }
   }
 

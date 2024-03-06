@@ -28,9 +28,8 @@ const EditForm = ({task}) => {
 
   const onSubmit = async (data) => {
     const editedData = {...data, status, userEmail}
-    console.log(editedData)
     try {
-      const result = await axios.put(`http://localhost:5000/edit-task/${_id}`, editedData);
+      const result = await axios.put(`https://task-management-server-rust.vercel.app/edit-task/${_id}`, editedData);
       if(result.data.modifiedCount>0){
         toast.success('Task Edited successfully!', {
           position: 'top-right',

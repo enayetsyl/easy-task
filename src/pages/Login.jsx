@@ -6,14 +6,17 @@ import GoogleIcon from '@mui/icons-material/Google';
 import { toast } from "react-toastify";
 
 const Login = () => {
-const { googleSignIn} = useContext(AuthContext)
+const { googleSignIn, user} = useContext(AuthContext)
   const location = useLocation()
   const navigate = useNavigate()
+
+  if(user){
+    navigate('/dashboard')
+  }
 
   const handleGoogleSignIn = () => {
     googleSignIn()
     .then(result => {
-      console.log(result.user.email)
       if(result.user.email){
         toast.success('Login successfull!', {
           position: 'top-right',
@@ -34,23 +37,7 @@ const { googleSignIn} = useContext(AuthContext)
     })
   }
 
-  // const handleGitHubSignIn = () => {
-  //   gitHubSignIn()
-  //   .then(result => {
-  //     console.log(result)
-  //     // if(result.user.email){
-  //     //   alert('Login successful')
-  //     //   navigate(location?.state ? location.state : '/dashboard')
-  //     // }
-  //   })
-  //   .catch(error => {
-  //     if(error){
-  //       console.log(error.message)
-  //       console.log(error.code)
-       
-  //     }
-  //   })
-  // }
+ 
 
   return (
     <Box 
